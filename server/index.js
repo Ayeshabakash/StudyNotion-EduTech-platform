@@ -7,8 +7,6 @@ const paymentRoutes = require("./routes/Payments");
 const courseRoutes = require("./routes/Course");
 const contactRoutes = require("./routes/Contact");
 
-const { createProxyMiddleware } = require('http-proxy-middleware');
-
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");    //cors is mechanism by which a front-end client can make requests for resources to an external back-end server.
@@ -27,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin : "https://study-notion-edu-tech-platform-6wsz.vercel.app",
+        origin : "*",
         credentials:true
     })
 )
@@ -42,17 +40,6 @@ app.use(
 // connect cloudinary 
 connectCloudinary();
 
-
-app.use(
-    '/api',
-    createProxyMiddleware({
-        target: 'https://studynotion-project-backend-3vn5.onrender.com',
-        changeOrigin: true,
-        pathRewrite: {
-            '^/api': '', // Remove the '/api' prefix when forwarding the request
-        },
-    })
-);
 
 // routes 
 app.use("/api/v1/auth" , userRoutes);
