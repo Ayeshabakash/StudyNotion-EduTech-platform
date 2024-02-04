@@ -52,7 +52,7 @@ const {
 const {
   updateCourseProgress,
   // getProgressPercentage,
-} = require("../controllers/courseProgress")
+} = require("../controllers/CourseProgress")
 
 
 // Importing Middlewares
