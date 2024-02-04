@@ -7,7 +7,7 @@ const paymentRoutes = require("./routes/Payments");
 const courseRoutes = require("./routes/Course");
 const contactRoutes = require("./routes/Contact");
 
-
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
@@ -19,9 +19,6 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 
-const { createProxyMiddleware } = require('http-proxy-middleware');
-
-
 // connect to database 
 database.connectDB();
 
@@ -30,7 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin : "https://studynotion-project-backend-3vn5.onrender.com",
+        origin : "https://study-notion-edu-tech-platform-6wsz.vercel.app",
         credentials:true
     })
 )
@@ -44,7 +41,6 @@ app.use(
 
 // connect cloudinary 
 connectCloudinary();
-
 
 
 app.use(

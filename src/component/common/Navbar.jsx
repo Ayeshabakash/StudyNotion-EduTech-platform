@@ -26,6 +26,8 @@ const Navbar = () => {
         try{
             const result = await apiConnector("GET" , categories.CATEGORIES_API);
             console.log("printing the the categories ", result);
+
+            if(result)
             setSublinks(result.data.allCategories);
         }
         catch(error)
@@ -77,7 +79,7 @@ const Navbar = () => {
                                                 <div className='text-center'>Loading...</div>
                                              ) : 
                                              (
-                                                subLinks.length ? 
+                                                subLinks?.length ? 
                                                 (
                                                     subLinks?.map( (sublink , index) => (
                                                         <Link to={`/catalog/${sublink.name.split((/[\/ ]/)).join("-").toLowerCase()}`} key={index}>
