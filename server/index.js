@@ -19,6 +19,9 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+
 // connect to database 
 database.connectDB();
 
@@ -27,7 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin : "http://localhost:3000",
+        origin : "https://studynotion-project-backend-3vn5.onrender.com",
         credentials:true
     })
 )
@@ -41,6 +44,19 @@ app.use(
 
 // connect cloudinary 
 connectCloudinary();
+
+
+
+app.use(
+    '/api',
+    createProxyMiddleware({
+        target: 'https://studynotion-project-backend-3vn5.onrender.com',
+        changeOrigin: true,
+        pathRewrite: {
+            '^/api': '', // Remove the '/api' prefix when forwarding the request
+        },
+    })
+);
 
 // routes 
 app.use("/api/v1/auth" , userRoutes);
