@@ -8,6 +8,7 @@ const courseRoutes = require("./routes/Course");
 const contactRoutes = require("./routes/Contact");
 
 
+
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");    //cors is mechanism by which a front-end client can make requests for resources to an external back-end server.
