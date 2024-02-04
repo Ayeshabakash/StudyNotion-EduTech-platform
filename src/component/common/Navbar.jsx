@@ -77,7 +77,7 @@ const Navbar = () => {
                                                 <div className='text-center'>Loading...</div>
                                              ) : 
                                              (
-                                                subLinks.length ? 
+                                                subLinks?.length ? 
                                                 (
                                                     subLinks?.map( (sublink , index) => (
                                                         <Link to={`/catalog/${sublink.name.split((/[\/ ]/)).join("-").toLowerCase()}`} key={index}>
